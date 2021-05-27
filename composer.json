@@ -1,0 +1,22 @@
+{
+    "name": "xcopy/yii2-attachments",
+    "description": "Yii2 Attachments Extension",
+    "type": "yii2-extension",
+    "require": {
+        "php": ">=5.6",
+        "yiisoft/yii2": "~2.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kairat Jenishev",
+            "email": "kairat.jenishev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "xcopy\\attachments\\": ""
+        }
+    }
+}
