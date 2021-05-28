@@ -3,8 +3,10 @@
     "description": "Yii2 Attachments Extension",
     "type": "yii2-extension",
     "require": {
-        "php": ">=5.6",
-        "yiisoft/yii2": "~2.0"
+        "php": ">=7.4",
+        "yiisoft/yii2": "~2.0.14",
+        "yiisoft/yii2-bootstrap4": "^2.0",
+        "kartik-v/yii2-widget-select2": "2.2.x-dev"
     },
     "license": "MIT",
     "authors": [
@@ -18,5 +20,11 @@
         "psr-4": {
             "xcopy\\attachments\\": ""
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }
