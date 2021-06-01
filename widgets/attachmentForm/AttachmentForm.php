@@ -5,9 +5,10 @@ namespace xcopy\attachments\widgets\attachmentForm;
 use Yii;
 use yii\base\Widget;
 use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
+use yii\helpers\{ArrayHelper, Url};
+use yii\web\View;
 
+use xcopy\attachments\AttachmentsAsset;
 use xcopy\attachments\models\{
     Attachment,
     AttachmentType
@@ -89,6 +90,13 @@ class AttachmentForm extends Widget
      */
     public function run(): string
     {
+        $view = $this->getView();
+        $view->registerJs("
+            var Attachments = {confirmMessage: '" . Yii::t('app', 'Are you sure? This action will irreversibly delete the file from the system!') . "'};
+        ", View::POS_HEAD);
+
+        AttachmentsAsset::register($view);
+
         return $this->render('index', [
             'model' => $this->model,
             'color' => $this->color,

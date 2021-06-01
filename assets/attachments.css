@@ -1,0 +1,8 @@
+#js-attachment-errors .invalid-feedback {
+    display: block !important;
+}
+#js-attachment-errors .invalid-feedback ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
