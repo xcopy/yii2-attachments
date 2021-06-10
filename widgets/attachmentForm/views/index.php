@@ -42,6 +42,7 @@ $uploadForm = new AttachmentUploadForm;
                     [
                         'attribute' => 'original_name',
                         'format' => 'raw',
+                        'contentOptions' => ['class' => 'w-100'],
                         'value' => function (Attachment $model) {
                             $link = Html::a(
                                 $model->original_name,
