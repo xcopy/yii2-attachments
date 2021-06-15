@@ -1,5 +1,5 @@
 (function ($) {
-    $('#js-attachment-files').on('change', function (e) {
+    $('#js-attachment-files').on('change', function () {
         $('#js-attachment-errors').empty().hide();
     });
 
@@ -32,12 +32,15 @@
                     feedback.show().html(response.errors);
                 }
 
-                form[0].reset();
+                form.get(0).reset();
+
                 $.pjax.reload('#js-attachment-list', {async: false});
                 $.pjax.reload('#js-attachment-type', {async: false});
             },
             complete: function () {
+                form.get(0).reset();
                 form.delay(delay).show(0);
+
                 submit.prop('disabled', false);
                 progress.delay(delay).hide(0);
 
