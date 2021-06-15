@@ -26,7 +26,10 @@ class AttachmentForm extends Widget
     public $model;
 
     /** @var string|null */
-    public $color = null;
+    public $header = null;
+
+    /** @var string|null */
+    public $footer = null;
 
     /** @var string|array */
     public $action;
@@ -99,10 +102,11 @@ class AttachmentForm extends Widget
 
         return $this->render('index', [
             'model' => $this->model,
-            'color' => $this->color,
+            'header' => $this->header,
+            'footer' => $this->footer,
             'action' => $this->action,
             'types' => $this->types,
-            'dataProvider' => $this->dataProvider,
+            'dataProvider' => $this->dataProvider
         ]);
     }
 }

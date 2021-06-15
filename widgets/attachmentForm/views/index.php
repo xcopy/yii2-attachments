@@ -15,7 +15,8 @@ use kartik\select2\Select2;
 /**
  * @var yii\data\ActiveDataProvider $dataProvider
  * @var Attachment $model
- * @var string|null $color
+ * @var string|null $header
+ * @var string|null $footer
  * @var array|string $action
  * @var array $types
  */
@@ -25,6 +26,7 @@ $uploadForm = new AttachmentUploadForm;
 ?>
 
 <div class="card">
+    <?= $header ?: '' ?>
     <?php if ($dataProvider) : ?>
         <div class="card-body">
             <?php Pjax::begin([
@@ -85,9 +87,10 @@ $uploadForm = new AttachmentUploadForm;
             <?php Pjax::end() ?>
         </div>
     <?php endif ?>
-    <div class="<?= $dataProvider ? 'card-footer d-block' : 'card-body' ?>">
+    <div class="<?= $dataProvider ? 'card-footer' : 'card-body' ?>">
         <?php $form = ActiveForm::begin([
             'id' => 'js-attachment-form',
+            'options' => ['class' => 'w-100'],
             'action' => $action,
             'enableClientValidation' => false
         ]) ?>
@@ -138,4 +141,7 @@ $uploadForm = new AttachmentUploadForm;
             <div class="progress-bar" role="progressbar"></div>
         </div>
     </div>
+    <?php if ($footer) : ?>
+        <div class="card-footer"><?= $footer ?></div>
+    <?php endif ?>
 </div>
