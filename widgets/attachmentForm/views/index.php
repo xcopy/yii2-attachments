@@ -40,6 +40,11 @@ $uploadForm = new AttachmentUploadForm;
                 'layout' => "{items}\n{pager}",
                 'options' => ['class' => 'grid-view table-responsive'],
                 'tableOptions' => ['class' => 'table table-sm mb-0'],
+                'pager' => [
+                    'class' => 'yii\bootstrap4\LinkPager',
+                    'options' => ['class' => 'd-flex justify-content-center'],
+                    'listOptions' => ['class' => 'pagination mt-3 mb-0']
+                ],
                 'columns' => [
                     [
                         'attribute' => 'original_name',
