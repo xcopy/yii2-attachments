@@ -15,6 +15,7 @@ use kartik\select2\Select2;
 /**
  * @var yii\data\ActiveDataProvider $dataProvider
  * @var Attachment $model
+ * @var array $options
  * @var string|null $header
  * @var string|null $footer
  * @var array|string $action
@@ -95,7 +96,10 @@ $uploadForm = new AttachmentUploadForm;
     <div class="<?= $dataProvider ? 'card-footer' : 'card-body' ?>">
         <?php $form = ActiveForm::begin([
             'id' => 'js-attachment-form',
-            'options' => ['class' => 'w-100'],
+            'options' => array_merge(
+                $options,
+                ['class' => 'w-100']
+            ),
             'action' => $action,
             'enableClientValidation' => false
         ]) ?>

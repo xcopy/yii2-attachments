@@ -25,6 +25,9 @@ class AttachmentForm extends Widget
     /** @var Attachment */
     public $model;
 
+    /** @var array  */
+    public $options = [];
+
     /** @var string|null */
     public $header = null;
 
@@ -101,6 +104,7 @@ class AttachmentForm extends Widget
         AttachmentsAsset::register($view);
 
         return $this->render('index', [
+            'options' => $this->options,
             'model' => $this->model,
             'header' => $this->header,
             'footer' => $this->footer,
