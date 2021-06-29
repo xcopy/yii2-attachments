@@ -17,7 +17,9 @@ use kartik\select2\Select2;
  * @var Attachment $model
  * @var array $options
  * @var string|null $header
+ * @var array $headerOptions
  * @var string|null $footer
+ * @var array $footerOptions
  * @var array|string $action
  * @var array $types
  */
@@ -27,7 +29,7 @@ $uploadForm = new AttachmentUploadForm;
 ?>
 
 <div class="card">
-    <?= $header ?: '' ?>
+    <?= $header ? Html::tag('div', $header, $headerOptions) : '' ?>
     <?php if ($dataProvider) : ?>
         <div class="card-body">
             <?php Pjax::begin([
@@ -150,7 +152,5 @@ $uploadForm = new AttachmentUploadForm;
             <div class="progress-bar" role="progressbar"></div>
         </div>
     </div>
-    <?php if ($footer) : ?>
-        <div class="card-footer"><?= $footer ?></div>
-    <?php endif ?>
+    <?= $footer ? Html::tag('div', $footer, $footerOptions) : '' ?>
 </div>

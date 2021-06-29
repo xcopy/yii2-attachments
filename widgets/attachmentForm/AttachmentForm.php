@@ -31,8 +31,14 @@ class AttachmentForm extends Widget
     /** @var string|null */
     public $header = null;
 
+    /** @var array  */
+    public $headerOptions = [];
+
     /** @var string|null */
     public $footer = null;
+
+    /** @var array  */
+    public $footerOptions = ['class' => 'card-footer'];
 
     /** @var string|array */
     public $action;
@@ -106,8 +112,13 @@ class AttachmentForm extends Widget
         return $this->render('index', [
             'options' => $this->options,
             'model' => $this->model,
+
             'header' => $this->header,
+            'headerOptions' => $this->headerOptions,
+
             'footer' => $this->footer,
+            'footerOptions' => $this->footerOptions,
+
             'action' => $this->action,
             'types' => $this->types,
             'dataProvider' => $this->dataProvider
