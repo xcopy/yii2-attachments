@@ -1,6 +1,6 @@
 <?php
 
-namespace xcopy\attachments\widgets\attachmentForm;
+namespace xcopy\attachments\widgets;
 
 use Yii;
 use yii\base\Widget;
@@ -17,7 +17,7 @@ use xcopy\attachments\models\{
 /**
  * Class AttachmentForm
  *
- * @package xcopy\attachments\widgets\attachmentForm
+ * @package xcopy\attachments\widgets
  * @author Kairat Jenishev <kairat.jenishev@gmail.com>
  */
 class AttachmentForm extends Widget
@@ -109,7 +109,7 @@ class AttachmentForm extends Widget
 
         AttachmentsAsset::register($view);
 
-        return $this->render('index', [
+        return $this->render('_attachment_form', [
             'options' => $this->options,
             'model' => $this->model,
 
