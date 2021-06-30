@@ -16,6 +16,9 @@ class AttachmentUploadForm extends Model
     /** @var UploadedFile[] */
     public $uploadedFiles;
 
+    /** @var string */
+    public $redirectUrl;
+
     /**
      * {@inheritDoc}
      */
@@ -30,7 +33,8 @@ class AttachmentUploadForm extends Model
                 'maxFiles' => 10,
                 'minSize' => 1,
                 'maxSize' => 1024 * 1024 * 10,
-            ]
+            ],
+            ['redirectUrl', 'string']
         ];
     }
 }

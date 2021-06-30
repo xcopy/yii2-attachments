@@ -43,6 +43,9 @@ class AttachmentForm extends Widget
     /** @var string|array */
     public $action;
 
+    /** @var string|array */
+    public $redirectUrl;
+
     /** @var array */
     public $types;
 
@@ -120,6 +123,7 @@ class AttachmentForm extends Widget
             'footerOptions' => $this->footerOptions,
 
             'action' => $this->action,
+            'redirectUrl' => $this->redirectUrl,
             'types' => $this->types,
             'dataProvider' => $this->dataProvider
         ]);

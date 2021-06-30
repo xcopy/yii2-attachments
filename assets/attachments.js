@@ -1,6 +1,10 @@
-(function ($) {
-    $('#js-attachment-files').on('change', function () {
-        $('#js-attachment-errors').empty().hide();
+(function (window, $) {
+    var fileInput = $('#js-attachment-files');
+    var feedback = $('#js-attachment-errors');
+    var redirectUrl = $('#js-attachment-redirect-url').val();
+
+    fileInput.on('change', function () {
+        feedback.empty().hide();
     });
 
     $('#js-attachment-form').on('submit', function (e) {
@@ -8,10 +12,7 @@
         var submit = $('#js-attachment-submit');
         var progress = $('#js-attachment-progress');
         var progressBar = progress.find('.progress-bar');
-        var fileInput = $('#js-attachment-files');
-        var feedback = $('#js-attachment-errors');
         var delay = 250;
-        var hasFiles = fileInput[0].files.length > 0;
 
         e.preventDefault();
         e.stopImmediatePropagation();
@@ -22,14 +23,19 @@
             dataType: 'json',
             data: new FormData(this),
             beforeSend: function () {
+                var hasFiles = fileInput[0].files.length > 0;
+
                 hasFiles && form.hide();
                 hasFiles && progress.show();
+
                 fileInput.removeClass('is-invalid');
                 feedback.empty().hide();
             },
             success: function (response) {
-                if (response.errors) {
+                if (response.errors.length) {
                     feedback.show().html(response.errors);
+                } else if (redirectUrl) {
+                    window.location.href = redirectUrl;
                 }
 
                 form.get(0).reset();
@@ -56,8 +62,11 @@
 
                 if (xhr.upload) {
                     xhr.upload.addEventListener('progress', function (e) {
+                        var width = ((e.loaded / e.total) * 100) + '%';
+
                         if (e.lengthComputable) {
-                            progressBar.css('width', ((e.loaded / e.total) * 100) + '%');
+                            progressBar.text(width);
+                            progressBar.css('width', width);
                         }
                     }, false);
                 }
@@ -73,10 +82,16 @@
         if (confirm(Attachments.confirmMessage)) {
             $.post(e.target.href, function (response) {
                 if (response.success) {
-                    $.pjax.reload('#js-attachment-list', {async: false});
-                    $.pjax.reload('#js-attachment-type', {async: false});
+                    if (redirectUrl) {
+                        window.location.href = redirectUrl;
+                    } else {
+                        $.pjax.reload('#js-attachment-list', {async: false});
+                        $.pjax.reload('#js-attachment-type', {async: false});
+                    }
+                } else {
+                    alert(response.message);
                 }
             });
         }
     });
-})(jQuery);
+})(window, window.jQuery);

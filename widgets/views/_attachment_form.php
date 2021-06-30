@@ -1,7 +1,7 @@
 <?php
 
 use yii\widgets\Pjax;
-use yii\helpers\Html;
+use yii\helpers\{Html, Url};
 use yii\grid\{ActionColumn, GridView};
 use yii\widgets\ActiveForm;
 
@@ -21,10 +21,13 @@ use kartik\select2\Select2;
  * @var string|null $footer
  * @var array $footerOptions
  * @var array|string $action
+ * @var array|string $redirectUrl
  * @var array $types
  */
 
-$uploadForm = new AttachmentUploadForm;
+$uploadForm = new AttachmentUploadForm([
+    'redirectUrl' => Url::to($redirectUrl)
+]);
 
 ?>
 
@@ -135,6 +138,10 @@ $uploadForm = new AttachmentUploadForm;
                     ])
                     ->label(false)
                 ?>
+                <?= $form->field($uploadForm, 'redirectUrl', $options)
+                    ->hiddenInput(['id' => 'js-attachment-redirect-url'])
+                    ->label(false)
+                ?>
                 <div id="js-attachment-errors" style="display: none;"></div>
             </div>
             <div class="col-3 text-right">
@@ -148,7 +155,7 @@ $uploadForm = new AttachmentUploadForm;
             </div>
         </div>
         <?php ActiveForm::end() ?>
-        <div id="js-attachment-progress" class="progress" style="display: none;">
+        <div id="js-attachment-progress" class="progress w-100" style="display: none;">
             <div class="progress-bar" role="progressbar"></div>
         </div>
     </div>
