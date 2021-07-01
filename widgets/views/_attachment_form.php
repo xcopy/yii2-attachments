@@ -33,6 +33,7 @@ $uploadForm = new AttachmentUploadForm([
 
 <div class="card">
     <?= $header ? Html::tag('div', $header, $headerOptions) : '' ?>
+
     <?php if ($dataProvider) : ?>
         <div class="card-body">
             <?php Pjax::begin([
@@ -98,6 +99,7 @@ $uploadForm = new AttachmentUploadForm([
             <?php Pjax::end() ?>
         </div>
     <?php endif ?>
+
     <div class="<?= $dataProvider ? 'card-footer' : 'card-body' ?>">
         <?php $form = ActiveForm::begin([
             'id' => 'js-attachment-form',
@@ -155,9 +157,11 @@ $uploadForm = new AttachmentUploadForm([
             </div>
         </div>
         <?php ActiveForm::end() ?>
+
         <div id="js-attachment-progress" class="progress w-100" style="display: none;">
             <div class="progress-bar" role="progressbar"></div>
         </div>
     </div>
+
     <?= $footer ? Html::tag('div', $footer, $footerOptions) : '' ?>
 </div>
